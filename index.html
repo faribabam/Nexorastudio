@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexora Studio | استودیو پیشرفته توسعه و طراحی</title>
+    <title>Nexora Studio | ورود به پلتفرم</title>
     
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,13 +13,14 @@
 
         :root {
             --bg-color: #080911;
-            --card-bg: rgba(20, 23, 36, 0.6);
+            --card-bg: rgba(20, 23, 36, 0.65);
             --primary-gradient: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
             --accent-color: #6366f1;
             --accent-glow: rgba(99, 102, 241, 0.4);
             --text-color: #e2e8f0;
             --text-muted: #94a3b8;
             --border-glow: rgba(255, 255, 255, 0.08);
+            --error-color: #f43f5e;
         }
 
         * {
@@ -36,9 +37,10 @@
             line-height: 1.6;
             overflow-x: hidden;
             position: relative;
+            min-height: 100vh;
         }
 
-        /* Canvas Particle Background */
+        /* Particle Background Canvas */
         #bgCanvas {
             position: fixed;
             top: 0;
@@ -49,21 +51,188 @@
             pointer-events: none;
         }
 
+        /* ========================================================= */
+        /* 1. MANDATORY LOGIN GATEKEEPER SCREEN                     */
+        /* ========================================================= */
+        #loginGatekeeper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            background: radial-gradient(circle at center, rgba(15, 23, 42, 0.85) 0%, rgba(8, 9, 17, 0.98) 100%);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        #loginGatekeeper.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .login-card {
+            background: rgba(20, 23, 36, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 24px;
+            padding: 50px 40px;
+            width: 90%;
+            max-width: 440px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(99, 102, 241, 0.25);
+            text-align: center;
+            position: relative;
+            animation: cardEntrance 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes cardEntrance {
+            from { opacity: 0; transform: scale(0.85) translateY(30px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .login-card .brand-icon {
+            font-size: 3rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .login-card h2 {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 8px;
+            font-weight: 800;
+        }
+
+        .login-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        .input-group i {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 18px;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 16px 50px 16px 20px;
+            background: rgba(8, 9, 17, 0.7);
+            border: 1px solid var(--border-glow);
+            border-radius: 14px;
+            color: #fff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 20px var(--accent-glow);
+            background: rgba(8, 9, 17, 0.9);
+        }
+
+        .input-group input:focus + i {
+            color: var(--accent-color);
+        }
+
+        .error-message {
+            color: var(--error-color);
+            font-size: 0.85rem;
+            margin-top: 10px;
+            min-height: 22px;
+            font-weight: 600;
+        }
+
+        /* Common Button Styling */
+        .btn {
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: none;
+            outline: none;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.35);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn-primary:hover::before { left: 100%; }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.5);
+        }
+
+        /* ========================================================= */
+        /* 2. PROTECTED WEBSITE CONTENT                              */
+        /* ========================================================= */
+        #protectedContent {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        #protectedContent.visible {
+            display: block;
+            opacity: 1;
+        }
+
         /* Header Navigation */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 20px 8%;
-            background: rgba(8, 9, 17, 0.7);
+            background: rgba(8, 9, 17, 0.75);
             backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid var(--border-glow);
-            transition: all 0.4s ease;
         }
 
         .logo {
@@ -71,7 +240,6 @@
             font-weight: 900;
             color: #fff;
             letter-spacing: 1px;
-            position: relative;
         }
 
         .logo span {
@@ -92,89 +260,34 @@
             font-size: 0.95rem;
             font-weight: 500;
             transition: 0.3s ease;
-            position: relative;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            right: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-gradient);
-            transition: width 0.3s ease;
-        }
+        .nav-links a:hover { color: #fff; }
 
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-links a:hover {
-            color: #fff;
-        }
-
-        .nav-actions {
+        .user-status {
             display: flex;
-            gap: 12px;
             align-items: center;
-        }
-
-        /* Buttons */
-        .btn {
-            padding: 10px 22px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            border: none;
-            outline: none;
-        }
-
-        .btn-primary {
-            background: var(--primary-gradient);
-            color: #fff;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .btn-primary:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(168, 85, 247, 0.5);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.03);
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 18px;
+            border-radius: 30px;
             border: 1px solid var(--border-glow);
-            color: #fff;
-            backdrop-filter: blur(5px);
         }
 
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(99, 102, 241, 0.5);
-            transform: translateY(-2px);
+        .btn-logout {
+            background: rgba(244, 63, 94, 0.15);
+            color: var(--error-color);
+            border: 1px solid rgba(244, 63, 94, 0.3);
+            padding: 6px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-logout:hover {
+            background: var(--error-color);
+            color: #fff;
         }
 
         /* Hero Section */
@@ -185,13 +298,9 @@
             justify-content: center;
             text-align: center;
             padding: 140px 8% 80px;
-            position: relative;
         }
 
-        .hero-content {
-            max-width: 850px;
-            z-index: 2;
-        }
+        .hero-content { max-width: 850px; }
 
         .badge {
             background: rgba(99, 102, 241, 0.1);
@@ -215,7 +324,6 @@
             font-weight: 900;
             margin-bottom: 25px;
             line-height: 1.25;
-            letter-spacing: -0.5px;
         }
 
         .gradient-text {
@@ -228,23 +336,10 @@
             color: var(--text-muted);
             font-size: 1.2rem;
             margin-bottom: 35px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        /* Cards & Tilt Animation */
-        .services, .portfolio, .cta {
-            padding: 100px 8%;
-            position: relative;
-        }
+        /* Services Grid & Tilt Cards */
+        .services { padding: 100px 8%; }
 
         .section-title {
             text-align: center;
@@ -252,37 +347,26 @@
             font-weight: 800;
             margin-bottom: 60px;
             color: #fff;
-            position: relative;
         }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: var(--primary-gradient);
-            margin: 15px auto 0;
-            border-radius: 2px;
-        }
-
-        .cards-grid, .portfolio-grid {
+        .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
 
-        .card, .portfolio-item {
+        .card {
             background: var(--card-bg);
             border: 1px solid var(--border-glow);
             padding: 40px 30px;
             border-radius: 20px;
             backdrop-filter: blur(10px);
-            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s;
             transform-style: preserve-3d;
             perspective: 1000px;
         }
 
-        .card:hover, .portfolio-item:hover {
+        .card:hover {
             border-color: rgba(99, 102, 241, 0.4);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px var(--accent-glow);
         }
@@ -296,197 +380,10 @@
             display: inline-block;
         }
 
-        .card h3, .portfolio-item h3 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: #fff;
-        }
+        .card h3 { font-size: 1.3rem; margin-bottom: 15px; color: #fff; }
+        .card p { color: var(--text-muted); font-size: 0.95rem; }
 
-        .card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* CTA Form Box */
-        .cta-box {
-            background: linear-gradient(135deg, rgba(20, 23, 36, 0.8), rgba(30, 35, 55, 0.8));
-            border: 1px solid var(--border-glow);
-            padding: 60px 40px;
-            border-radius: 24px;
-            text-align: center;
-            max-width: 750px;
-            margin: 0 auto;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-
-        .cta-box h2 {
-            font-size: 2rem;
-            color: #fff;
-            margin-bottom: 15px;
-        }
-
-        .cta-box p {
-            color: var(--text-muted);
-            margin-bottom: 30px;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-            max-width: 480px;
-            margin: 0 auto;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 14px 20px;
-            background: rgba(8, 9, 17, 0.8);
-            border: 1px solid var(--border-glow);
-            border-radius: 12px;
-            color: #fff;
-            font-size: 0.95rem;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        input:focus, textarea:focus {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
-
-        /* Glassmorphism Modal (صفحه ورود) */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(4, 5, 10, 0.85);
-            backdrop-filter: blur(20px);
-            z-index: 2000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.4s ease;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .modal-card {
-            background: rgba(20, 23, 36, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 24px;
-            padding: 45px 35px;
-            width: 90%;
-            max-width: 420px;
-            position: relative;
-            transform: scale(0.8) translateY(30px);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.7), 0 0 30px rgba(99, 102, 241, 0.2);
-        }
-
-        .modal-overlay.active .modal-card {
-            transform: scale(1) translateY(0);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 1.4rem;
-            color: var(--text-muted);
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .close-btn:hover {
-            color: #fff;
-            transform: rotate(90deg);
-        }
-
-        /* Admin Panel Dashboard */
-        #adminPanel {
-            display: none;
-            padding: 140px 8% 80px;
-            min-height: 100vh;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-            border-bottom: 1px solid var(--border-glow);
-            padding-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-
-        .stat-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-glow);
-            padding: 25px;
-            border-radius: 16px;
-            backdrop-filter: blur(10px);
-        }
-
-        .stat-card h4 {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 8px;
-        }
-
-        .stat-card p {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--accent-color);
-        }
-
-        .admin-table-container {
-            background: var(--card-bg);
-            border: 1px solid var(--border-glow);
-            border-radius: 16px;
-            padding: 30px;
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: right;
-        }
-
-        th, td {
-            padding: 16px 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        th {
-            color: #818cf8;
-            font-weight: 700;
-        }
-
-        /* Reveal on Scroll Animations */
+        /* Reveal Animations */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -507,190 +404,109 @@
         }
 
         @media (max-width: 768px) {
-            .navbar { flex-direction: column; gap: 15px; padding: 15px 5%; }
-            .nav-links { gap: 15px; font-size: 0.85rem; }
             .hero h1 { font-size: 2.3rem; }
+            .navbar { flex-direction: column; gap: 15px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Particle Background -->
+    <!-- Canvas Interactive Background -->
     <canvas id="bgCanvas"></canvas>
 
-    <!-- Navigation Bar -->
-    <header class="navbar">
-        <div class="logo">NEXORA<span>.STUDIO</span></div>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="#home">خانه</a></li>
-                <li><a href="#services">خدمات</a></li>
-                <li><a href="#portfolio">نمونه‌کارها</a></li>
-            </ul>
-        </nav>
-        <div class="nav-actions">
-            <a href="tel:09113526007" class="btn btn-secondary"><i class="fas fa-phone"></i> ۰۹۱۱۳۵۲۶۰۰۷</a>
-            <button class="btn btn-secondary" onclick="toggleModal(true)"><i class="fas fa-user-shield"></i> ورود مدیر</button>
-            <a href="#contact" class="btn btn-primary">شروع پروژه</a>
-        </div>
-    </header>
+    <!-- ========================================================= -->
+    <!-- 1. MANDATORY LOGIN SCREEN (درگاه ورود اجباری)              -->
+    <!-- ========================================================= -->
+    <div id="loginGatekeeper">
+        <div class="login-card">
+            <div class="brand-icon"><i class="fas fa-user-shield"></i></div>
+            <h2>ورود اختصاصی مدیر</h2>
+            <p>جهت دسترسی به سیستم، شماره تلفن و رمز عبور را وارد کنید</p>
 
-    <!-- Main Website View -->
-    <div id="mainWebsite">
+            <form onsubmit="verifyLogin(event)">
+                <div class="input-group">
+                    <input type="text" id="phoneInput" placeholder="شماره تلفن (مثال: 09113526007)" required>
+                    <i class="fas fa-phone"></i>
+                </div>
+                
+                <div class="input-group">
+                    <input type="password" id="passInput" placeholder="رمز عبور" required>
+                    <i class="fas fa-lock"></i>
+                </div>
+
+                <div id="loginError" class="error-message"></div>
+
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-sign-in-alt"></i> احراز هویت و ورود
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- 2. MAIN PROTECTED WEBSITE CONTENT                         -->
+    <!-- ========================================================= -->
+    <div id="protectedContent">
         
+        <!-- Header / Navbar -->
+        <header class="navbar">
+            <div class="logo">NEXORA<span>.STUDIO</span></div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">خانه</a></li>
+                    <li><a href="#services">خدمات</a></li>
+                    <li><a href="#admin">داشبورد</a></li>
+                </ul>
+            </nav>
+            <div class="user-status">
+                <span style="font-size:0.85rem; color:#818cf8;"><i class="fas fa-check-circle"></i> ادمین فعال</span>
+                <button class="btn-logout" onclick="logout()"><i class="fas fa-power-off"></i> خروج</button>
+            </div>
+        </header>
+
         <!-- Hero Section -->
         <section id="home" class="hero">
             <div class="hero-content reveal">
-                <span class="badge"><i class="fas fa-sparkles"></i> آینده دیجیتال خود را بسازید</span>
-                <h1>خلاقیت بی‌مرز در <span class="gradient-text">Nexora Studio</span></h1>
-                <p>ما ایده‌های برتر شما را به وب‌سایت‌ها، اپلیکیشن‌ها و برندهای دیجیتال فوق‌العاده با بالاترین سرعت و زیبایی تبدیل می‌کنیم.</p>
-                <div class="hero-buttons">
-                    <a href="#portfolio" class="btn btn-primary">مشاهده نمونه‌کارها <i class="fas fa-arrow-left"></i></a>
-                    <a href="https://wa.me/989113526007" target="_blank" class="btn btn-secondary" style="border-color: #25D366; color: #25D366;">
-                        <i class="fab fa-whatsapp"></i> گفتگوی واتساپ
-                    </a>
+                <span class="badge"><i class="fas fa-shield-alt"></i> دسترسی سطح مدیریت فعال شد</span>
+                <h1>خوش آمدید <span class="gradient-text">فریبرز عزیز</span></h1>
+                <p>پلتفرم مدیریت اختصاصی Nexora Studio آماده اجرای تمام سفارشات و توسعه کدهای شماست.</p>
+                <div style="display:flex; gap:15px; justify-content:center;">
+                    <a href="#services" class="btn btn-primary" style="width:auto;">بررسی خدمات سیستم <i class="fas fa-arrow-down"></i></a>
                 </div>
             </div>
         </section>
 
         <!-- Services Section -->
         <section id="services" class="services">
-            <h2 class="section-title reveal">خدمات اختصاصی ما</h2>
+            <h2 class="section-title reveal">امکانات پنل شما</h2>
             <div class="cards-grid">
                 <div class="card reveal" data-tilt>
-                    <div class="icon"><i class="fas fa-laptop-code"></i></div>
-                    <h3>توسعه وب فوق‌مدرن</h3>
-                    <p>طراحی و توسعه وب‌سایت‌های کاملاً اختصاصی، سریع، امن و بهینه‌سازی‌شده برای موتورسنجش گوگل.</p>
+                    <div class="icon"><i class="fas fa-code"></i></div>
+                    <h3>توسعه کدهای اختصاصی</h3>
+                    <p>امکان درج و ویرایش کدهای انیمیشنی، کامپوننت‌های مدرن و استایل‌های متحرک.</p>
                 </div>
                 <div class="card reveal" data-tilt>
-                    <div class="icon"><i class="fas fa-wand-magic-sparkles"></i></div>
-                    <h3>طراحی UI / UX</h3>
-                    <p>خلق رابط‌های کاربرپسند شگفت‌انگیز با تجربه کاربری روان، جذاب و استاندارد روز دنیا.</p>
+                    <div class="icon"><i class="fas fa-gauge-high"></i></div>
+                    <h3>سرعت و کارایی بالاترین سطح</h3>
+                    <p>بهینه‌سازی کامل با جاوااسکریپت ناخالص بدون افت فریم در پردازش انیمیشن‌ها.</p>
                 </div>
                 <div class="card reveal" data-tilt>
-                    <div class="icon"><i class="fas fa-rocket"></i></div>
-                    <h3>برندینگ و هویت بصری</h3>
-                    <p>ساخت لوگو، پالت‌های رنگی هوشمند و هویت بصری یکپارچه برای متمایز شدن کامل در بازار.</p>
+                    <div class="icon"><i class="fas fa-lock"></i></div>
+                    <h3>امنیت ورود محلی</h3>
+                    <p>ذخیره‌سازی وضعیت احراز هویت شما در LocalStorage جهت مرور بدون نیاز به ورود مجدد.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Portfolio Section -->
-        <section id="portfolio" class="portfolio">
-            <h2 class="section-title reveal">پروژه‌های شاخص</h2>
-            <div class="portfolio-grid">
-                <div class="portfolio-item reveal" data-tilt>
-                    <span style="color:#818cf8; font-size:0.85rem;">پلتفرم دیجیتال</span>
-                    <h3>سامانه مدیریت اختصاصی Nexora</h3>
-                    <p style="color:var(--text-muted); font-size:0.9rem;">توسعه وب‌سایت هوشمند به همراه پنل آنالیز پیشرفته.</p>
-                </div>
-                <div class="portfolio-item reveal" data-tilt>
-                    <span style="color:#818cf8; font-size:0.85rem;">برندینگ & طراحی</span>
-                    <h3>هویت بصری و UI/UX استودیویی</h3>
-                    <p style="color:var(--text-muted); font-size:0.9rem;">طراحی مینیمال و تاریک با انیمیشن‌های روان فریم‌ورک.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="cta">
-            <div class="cta-box reveal">
-                <h2>آماده‌اید پروژه خود را آغاز کنید؟</h2>
-                <p>اطلاعات خود را ثبت کنید تا در سریع‌ترین زمان ممکن با شما ارتباط بگیریم.</p>
-                
-                <form id="contactForm" onsubmit="handleMessageSubmit(event)">
-                    <input type="text" id="clientName" placeholder="نام و نام خانوادگی" required>
-                    <input type="text" id="clientContact" placeholder="شماره تماس یا ایمیل" required>
-                    <textarea id="clientMsg" placeholder="توضیحات کوتاه پروژه شما..." rows="4" required></textarea>
-                    <button type="submit" class="btn btn-primary" style="justify-content: center;">ارسال درخواست همکاری</button>
-                </form>
-                <div id="formStatus" style="margin-top:20px; font-weight:600; color:#4ade80;"></div>
-            </div>
-        </section>
+        <!-- Footer -->
+        <footer>
+            <p>© 2026 Nexora Studio. تمامی حقوق محفوظ است.</p>
+        </footer>
     </div>
 
-    <!-- Modal/Page Login (صفحه ورود مدیر) -->
-    <div id="loginModal" class="modal-overlay">
-        <div class="modal-card">
-            <span class="close-btn" onclick="toggleModal(false)">&times;</span>
-            <div style="text-align: center; margin-bottom: 30px;">
-                <i class="fas fa-user-lock" style="font-size: 2.5rem; background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
-                <h3 style="color: #fff; margin-top: 10px; font-size: 1.4rem;">ورود به پنل مدیریت</h3>
-                <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 5px;">لطفاً اطلاعات دسترسی خود را وارد کنید</p>
-            </div>
-            
-            <form onsubmit="handleLogin(event)">
-                <div>
-                    <input type="text" id="adminUser" placeholder="نام کاربری" value="admin" required>
-                </div>
-                <div>
-                    <input type="password" id="adminPass" placeholder="رمز عبور (پیش‌فرض: admin123)" required>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">
-                    <i class="fas fa-sign-in-alt"></i> احراز هویت و ورود
-                </button>
-            </form>
-            <div id="loginError" style="color: #ef4444; font-size: 0.85rem; text-align: center; margin-top: 15px;"></div>
-        </div>
-    </div>
-
-    <!-- Admin Panel Section -->
-    <div id="adminPanel">
-        <div class="admin-header">
-            <div>
-                <h2>داشبورد مدیریت <span class="gradient-text">Nexora Studio</span></h2>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">خوش‌آمدید، مدیر سیستم</p>
-            </div>
-            <button class="btn btn-secondary" onclick="logout()"><i class="fas fa-sign-out-alt"></i> خروج از پنل</button>
-        </div>
-
-        <div class="stats-grid">
-            <div class="stat-card">
-                <h4>پیام‌ها & درخواست‌ها</h4>
-                <p id="statRequests">0</p>
-            </div>
-            <div class="stat-card">
-                <h4>پروژه‌های فعال</h4>
-                <p>2</p>
-            </div>
-            <div class="stat-card">
-                <h4>وضعیت سرور</h4>
-                <p style="color: #4ade80; font-size: 1.4rem; margin-top: 10px;"><i class="fas fa-check-circle"></i> آنلاین (100%)</p>
-            </div>
-        </div>
-
-        <div class="admin-table-container">
-            <h3 style="margin-bottom: 20px; color: #fff;">درخواست‌های دریافتی اخیر</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>نام مشتری</th>
-                        <th>اطلاعات تماس</th>
-                        <th>شرح درخواست</th>
-                        <th>زمان ثبت</th>
-                    </tr>
-                </thead>
-                <tbody id="messagesBody">
-                    <tr>
-                        <td colspan="4" style="text-align: center; color: var(--text-muted);">هنوز پیامی ثبت نشده است.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <p style="margin-bottom: 12px; color: #fff;">
-            <i class="fas fa-phone-alt" style="color: var(--accent-color);"></i> مدیریت و پشتیبانی: 
-            <a href="tel:09113526007" style="color: #818cf8; text-decoration: none; font-weight: 700;">۰۹۱۱۳۵۲۶۰۰۷</a>
-        </p>
-        <p>© 2026 Nexora Studio. تمامی حقوق محفوظ است.</p>
-    </footer>
-
-    <!-- Interactive Scripts & Animations -->
+    <!-- Interactive Scripts -->
     <script>
-        /* 1. Canvas Interactive Background */
+        /* 1. Canvas Interactive Particle Background */
         const canvas = document.getElementById('bgCanvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -707,8 +523,8 @@
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
                 this.size = Math.random() * 2 + 0.5;
-                this.speedX = (Math.random() - 0.5) * 0.5;
-                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.6;
+                this.speedY = (Math.random() - 0.5) * 0.6;
                 this.alpha = Math.random() * 0.5 + 0.2;
             }
             update() {
@@ -739,76 +555,61 @@
         }
         animateCanvas();
 
-        /* 2. Scroll Reveal Animation */
+        /* 2. Login Logic & Verification */
+        const ADMIN_PHONE = "09113526007"; // شماره تلفن ادمین
+        const ADMIN_PASS = "fariborz";    // رمز عبور جدید درخواستی شما
+
+        // بررسی اینکه آیا قبلاً وارد شده است یا خیر
+        window.addEventListener('DOMContentLoaded', () => {
+            const isAuthenticated = localStorage.getItem('isLoggedIn');
+            if (isAuthenticated === 'true') {
+                showWebsiteContent();
+            }
+        });
+
+        function verifyLogin(event) {
+            event.preventDefault();
+            const phone = document.getElementById('phoneInput').value.trim();
+            const pass = document.getElementById('passInput').value.trim();
+            const errorDiv = document.getElementById('loginError');
+
+            if ((phone === ADMIN_PHONE || phone.length >= 10) && pass === ADMIN_PASS) {
+                errorDiv.innerText = "";
+                localStorage.setItem('isLoggedIn', 'true');
+                showWebsiteContent();
+            } else {
+                errorDiv.innerText = "شماره تلفن یا رمز عبور (fariborz) اشتباه است!";
+            }
+        }
+
+        function showWebsiteContent() {
+            const gatekeeper = document.getElementById('loginGatekeeper');
+            const protectedContent = document.getElementById('protectedContent');
+            
+            gatekeeper.classList.add('hidden');
+            setTimeout(() => {
+                protectedContent.classList.add('visible');
+                reveal(); // اجرا کردن انیمیشن‌های صفحه
+            }, 300);
+        }
+
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            location.reload();
+        }
+
+        /* 3. Scroll Reveal Animation */
         function reveal() {
             const reveals = document.querySelectorAll('.reveal');
             reveals.forEach(el => {
                 const windowHeight = window.innerHeight;
                 const elementTop = el.getBoundingClientRect().top;
-                const elementVisible = 100;
-                if (elementTop < windowHeight - elementVisible) {
+                if (elementTop < windowHeight - 80) {
                     el.classList.add('active');
                 }
             });
         }
         window.addEventListener('scroll', reveal);
-        reveal();
-
-        /* 3. Modal / Login Handlers */
-        function toggleModal(show) {
-            const modal = document.getElementById('loginModal');
-            if (show) modal.classList.add('active');
-            else modal.classList.remove('active');
-        }
-
-        function handleLogin(e) {
-            e.preventDefault();
-            const pass = document.getElementById('adminPass').value;
-            const err = document.getElementById('loginError');
-
-            if (pass === "admin123") {
-                toggleModal(false);
-                document.getElementById('mainWebsite').style.display = 'none';
-                document.getElementById('adminPanel').style.display = 'block';
-                err.innerText = "";
-            } else {
-                err.innerText = "رمز عبور اشتباه است! (رمز نمونه: admin123)";
-            }
-        }
-
-        function logout() {
-            document.getElementById('adminPanel').style.display = 'none';
-            document.getElementById('mainWebsite').style.display = 'block';
-        }
-
-        /* 4. Contact Form & Admin Message System */
-        let msgCount = 0;
-        function handleMessageSubmit(e) {
-            e.preventDefault();
-            const name = document.getElementById('clientName').value;
-            const contact = document.getElementById('clientContact').value;
-            const msg = document.getElementById('clientMsg').value;
-            const time = new Date().toLocaleTimeString('fa-IR');
-
-            const tbody = document.getElementById('messagesBody');
-            if (msgCount === 0) tbody.innerHTML = "";
-
-            const row = `<tr>
-                <td style="font-weight:700;">${name}</td>
-                <td>${contact}</td>
-                <td>${msg}</td>
-                <td style="color:var(--text-muted); font-size:0.85rem;">${time}</td>
-            </tr>`;
-
-            tbody.innerHTML += row;
-            msgCount++;
-            document.getElementById('statRequests').innerText = msgCount;
-
-            document.getElementById('formStatus').innerText = "پیام شما با موفقیت ثبت شد!";
-            document.getElementById('contactForm').reset();
-
-            setTimeout(() => { document.getElementById('formStatus').innerText = ""; }, 4000);
-        }
     </script>
 </body>
 </html>
