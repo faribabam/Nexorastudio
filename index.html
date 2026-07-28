@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexora Studio | ورود به سیستم</title>
+    <title>Nexora Studio | مدیریت کامل پلتفرم</title>
     
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,13 +13,13 @@
 
         :root {
             --bg-color: #080911;
-            --card-bg: rgba(20, 23, 36, 0.65);
+            --card-bg: rgba(20, 23, 36, 0.75);
             --primary-gradient: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
             --accent-color: #6366f1;
             --accent-glow: rgba(99, 102, 241, 0.4);
             --text-color: #e2e8f0;
             --text-muted: #94a3b8;
-            --border-glow: rgba(255, 255, 255, 0.08);
+            --border-glow: rgba(255, 255, 255, 0.1);
             --error-color: #f43f5e;
             --success-color: #10b981;
         }
@@ -41,7 +41,7 @@
             min-height: 100vh;
         }
 
-        /* Particle Background Canvas */
+        /* Background Particle Canvas */
         #bgCanvas {
             position: fixed;
             top: 0;
@@ -53,7 +53,7 @@
         }
 
         /* ========================================================= */
-        /* 1. MANDATORY ENTRY GATEKEEPER                             */
+        /* 1. ENTRY GATEKEEPER                                       */
         /* ========================================================= */
         #entryGatekeeper {
             position: fixed;
@@ -67,7 +67,6 @@
             z-index: 9999;
             background: radial-gradient(circle at center, rgba(15, 23, 42, 0.85) 0%, rgba(8, 9, 17, 0.98) 100%);
             backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
             transition: opacity 0.6s ease, visibility 0.6s ease;
         }
 
@@ -86,13 +85,6 @@
             max-width: 440px;
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(99, 102, 241, 0.25);
             text-align: center;
-            position: relative;
-            animation: cardEntrance 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        @keyframes cardEntrance {
-            from { opacity: 0; transform: scale(0.85) translateY(30px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
         .login-card .brand-icon {
@@ -104,38 +96,14 @@
             display: inline-block;
         }
 
-        .login-card h2 {
-            font-size: 1.7rem;
-            color: #fff;
-            margin-bottom: 6px;
-            font-weight: 800;
-        }
+        .login-card h2 { font-size: 1.7rem; color: #fff; margin-bottom: 6px; font-weight: 800; }
+        .login-card p { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 25px; }
 
-        .login-card p {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-bottom: 25px;
-        }
-
-        .input-group {
-            position: relative;
-            margin-bottom: 18px;
-            text-align: right;
-        }
-
-        .input-group i {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            right: 18px;
-            color: var(--text-muted);
-            font-size: 1rem;
-            transition: color 0.3s ease;
-        }
-
-        .input-group input {
+        .input-group { position: relative; margin-bottom: 18px; text-align: right; }
+        .input-group i { position: absolute; top: 50%; transform: translateY(-50%); right: 18px; color: var(--text-muted); }
+        .input-group input, .input-group textarea {
             width: 100%;
-            padding: 15px 48px 15px 18px;
+            padding: 14px 48px 14px 18px;
             background: rgba(8, 9, 17, 0.7);
             border: 1px solid var(--border-glow);
             border-radius: 12px;
@@ -145,33 +113,22 @@
             transition: all 0.3s ease;
         }
 
-        .input-group input:focus {
+        .input-group input:focus, .input-group textarea:focus {
             border-color: var(--accent-color);
-            box-shadow: 0 0 20px var(--accent-glow);
-            background: rgba(8, 9, 17, 0.9);
+            box-shadow: 0 0 15px var(--accent-glow);
         }
 
-        .input-group input:focus + i {
-            color: var(--accent-color);
-        }
-
-        .error-message {
-            color: var(--error-color);
-            font-size: 0.85rem;
-            margin-top: 8px;
-            min-height: 20px;
-            font-weight: 600;
-        }
+        .error-message { color: var(--error-color); font-size: 0.85rem; margin-top: 8px; min-height: 20px; font-weight: 600; }
 
         /* Buttons */
         .btn {
-            padding: 14px 28px;
+            padding: 12px 24px;
             border-radius: 12px;
             font-weight: 700;
             font-size: 0.95rem;
             text-decoration: none;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -184,25 +141,19 @@
             background: var(--primary-gradient);
             color: #fff;
             box-shadow: 0 6px 20px rgba(99, 102, 241, 0.35);
-            position: relative;
-            overflow: hidden;
-            width: 100%;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.5);
-        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(168, 85, 247, 0.5); }
+        .btn-danger { background: rgba(244, 63, 94, 0.2); color: var(--error-color); border: 1px solid rgba(244, 63, 94, 0.4); }
+        .btn-danger:hover { background: var(--error-color); color: #fff; }
 
-        /* ========================================================= */
-        /* NAVBAR & HEADER                                           */
-        /* ========================================================= */
+        /* Navbar */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 18px 8%;
-            background: rgba(8, 9, 17, 0.8);
+            background: rgba(8, 9, 17, 0.85);
             backdrop-filter: blur(15px);
             position: fixed;
             width: 100%;
@@ -211,17 +162,8 @@
             border-bottom: 1px solid var(--border-glow);
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: #fff;
-        }
-
-        .logo span {
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        .logo { font-size: 1.5rem; font-weight: 900; color: #fff; }
+        .logo span { background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
         .user-tag {
             display: flex;
@@ -242,85 +184,101 @@
             border-radius: 8px;
             cursor: pointer;
             font-size: 0.8rem;
-            transition: 0.3s;
         }
 
-        .btn-logout:hover {
-            background: var(--error-color);
-            color: #fff;
-        }
+        /* App Sections */
+        .app-section { display: none; opacity: 0; transition: opacity 0.6s ease; }
+        .app-section.active { display: block; opacity: 1; }
 
-        /* ========================================================= */
-        /* CLIENT VIEW & ADMIN VIEW                                  */
-        /* ========================================================= */
-        .app-section {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.6s ease;
-        }
-
-        .app-section.active {
-            display: block;
-            opacity: 1;
-        }
-
-        /* Hero & Services */
-        .hero {
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 140px 8% 60px;
-        }
-
-        .hero h1 { font-size: 3.2rem; font-weight: 900; margin-bottom: 20px; }
+        /* Client Section & Cards */
+        .hero { text-align: center; padding: 140px 8% 40px; }
+        .hero h1 { font-size: 3rem; font-weight: 900; margin-bottom: 15px; }
         .gradient-text { background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        .cards-grid {
+        .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            padding: 60px 8%;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 40px 8% 80px;
         }
 
-        .card {
+        .project-card {
             background: var(--card-bg);
             border: 1px solid var(--border-glow);
-            padding: 35px 25px;
             border-radius: 20px;
+            overflow: hidden;
             backdrop-filter: blur(10px);
-            transition: 0.3s ease;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
-        .card:hover {
-            border-color: rgba(99, 102, 241, 0.4);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 20px var(--accent-glow);
         }
 
-        .card .icon { font-size: 2.2rem; margin-bottom: 20px; color: var(--accent-color); }
-
-        /* Admin Dashboard Styles */
-        .admin-dashboard {
-            padding: 130px 8% 60px;
+        .project-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-glow);
+            background: #1e293b;
         }
 
-        .stats-grid {
+        .project-info { padding: 20px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .project-info h3 { font-size: 1.2rem; color: #fff; margin-bottom: 8px; }
+        .project-info p { color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px; }
+
+        /* Admin Dashboard Layout */
+        .admin-dashboard { padding: 120px 8% 80px; }
+        
+        .admin-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 30px;
             margin-top: 30px;
         }
 
-        .stat-card {
+        .admin-panel-card {
             background: var(--card-bg);
             border: 1px solid var(--border-glow);
-            padding: 20px;
-            border-radius: 16px;
+            border-radius: 20px;
+            padding: 30px;
         }
 
+        .admin-panel-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Admin Table */
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: right;
+            font-size: 0.9rem;
+        }
+
+        .admin-table th, .admin-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-glow);
+        }
+
+        .admin-table th { color: #818cf8; }
+
+        .thumb-preview { width: 45px; height: 45px; border-radius: 8px; object-fit: cover; }
+
         footer { text-align: center; padding: 30px; color: var(--text-muted); border-top: 1px solid var(--border-glow); }
+
+        @media (max-width: 900px) {
+            .admin-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -328,94 +286,120 @@
     <canvas id="bgCanvas"></canvas>
 
     <!-- ========================================================= -->
-    <!-- 1. ENTRY GATEKEEPER (ورود الزامی برای همه)               -->
+    <!-- 1. ENTRY GATEKEEPER                                       -->
     <!-- ========================================================= -->
     <div id="entryGatekeeper">
         <div class="login-card">
-            <div class="brand-icon"><i class="fas fa-lock"></i></div>
-            <h2>ورود به پلتفرم</h2>
-            <p>لطفاً برای ورود به سایت، شماره تلفن خود را وارد کنید</p>
+            <div class="brand-icon"><i class="fas fa-user-lock"></i></div>
+            <h2>ورود به سیستم</h2>
+            <p>شماره تلفن خود را برای ورود وارد کنید</p>
 
             <form onsubmit="handleAuth(event)">
                 <div class="input-group">
-                    <input type="text" id="phoneInput" placeholder="شماره تلفن همراه..." required>
+                    <input type="text" id="phoneInput" placeholder="شماره همراه (مثال: 09113526007)" required>
                     <i class="fas fa-phone"></i>
                 </div>
                 
                 <div class="input-group">
-                    <input type="password" id="passInput" placeholder="رمز عبور (ویژه مدیر)" >
+                    <input type="password" id="passInput" placeholder="رمز عبور مدیر">
                     <i class="fas fa-key"></i>
                 </div>
 
                 <div id="loginError" class="error-message"></div>
 
-                <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-arrow-left"></i> ورود به پلتفرم
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <i class="fas fa-sign-in-alt"></i> ورود به پلتفرم
                 </button>
             </form>
         </div>
     </div>
 
     <!-- ========================================================= -->
-    <!-- 2. CLIENT VIEW (بخش مشتریان / کاربران عادی)            -->
+    <!-- 2. CLIENT VIEW (نمایش پروژه‌ها برای مشتریان)             -->
     <!-- ========================================================= -->
     <div id="clientView" class="app-section">
         <header class="navbar">
             <div class="logo">NEXORA<span>.STUDIO</span></div>
             <div class="user-tag">
-                <span id="clientPhoneTag" style="color: var(--success-color);"><i class="fas fa-user-check"></i> مشتری</span>
+                <span id="clientPhoneTag" style="color: var(--success-color);"><i class="fas fa-user"></i> مشتری</span>
                 <button class="btn-logout" onclick="logout()"><i class="fas fa-power-off"></i> خروج</button>
             </div>
         </header>
 
         <section class="hero">
-            <div>
-                <h1>به استودیو <span class="gradient-text">Nexora</span> خوش آمدید</h1>
-                <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 30px;">شما به عنوان مشتری وارد شده‌اید. می‌توانید خدمات و پلتفرم ما را مشاهده کنید.</p>
-                <a href="https://wa.me/989113526007" target="_blank" class="btn btn-primary" style="width: auto; padding: 12px 30px;">
-                    <i class="fab fa-whatsapp"></i> ارتباط مستقیم با مدیر
-                </a>
-            </div>
+            <h1>پروژه‌ها و وب‌سایت‌های <span class="gradient-text">Nexora</span></h1>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">لیست پروژه‌های فعال و طراحی‌شده توسط استودیو را مشاهده کنید.</p>
         </section>
 
-        <section class="cards-grid">
-            <div class="card">
-                <div class="icon"><i class="fas fa-code"></i></div>
-                <h3>توسعه تخصصی وب</h3>
-                <p>طراحی وب‌سایت‌های پیشرفته، انیمیشنی و بهینه‌سازی شده.</p>
-            </div>
-            <div class="card">
-                <div class="icon"><i class="fas fa-wand-magic-sparkles"></i></div>
-                <h3>رابط کاربری مدرن</h3>
-                <p>طراحی UI/UX با جدیدترین متدهای روز دنیا.</p>
-            </div>
-        </section>
+        <!-- لیست پروژه‌های فعال به صورت زنده از JS پر می‌شود -->
+        <div class="projects-grid" id="clientProjectsList"></div>
     </div>
 
     <!-- ========================================================= -->
-    <!-- 3. ADMIN VIEW (بخش اختصاصی مدیر سیستم)                 -->
+    <!-- 3. ADMIN VIEW (مدیریت کامل و دکمه‌های واقعی)            -->
     <!-- ========================================================= -->
     <div id="adminView" class="app-section">
         <header class="navbar">
             <div class="logo">NEXORA<span>.ADMIN</span></div>
             <div class="user-tag">
-                <span style="color: #818cf8;"><i class="fas fa-user-shield"></i> مدیر سیستم (فریبرز)</span>
+                <span style="color: #818cf8;"><i class="fas fa-user-shield"></i> مدیریت: فریبرز</span>
                 <button class="btn-logout" onclick="logout()"><i class="fas fa-power-off"></i> خروج</button>
             </div>
         </header>
 
         <div class="admin-dashboard">
-            <h2>داشبورد مدیریتی <span class="gradient-text">Nexora Studio</span></h2>
-            <p style="color: var(--text-muted);">دسترسی کامل به آمار و تنظیمات اختصاصی</p>
+            <h2>پنل کنترل و مدیریت <span class="gradient-text">کامل پروژه‌ها</span></h2>
+            <p style="color: var(--text-muted);">از این بخش می‌توانید سایت‌های جدید اضافه کرده یا سایت‌های موجود را حذف کنید.</p>
 
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <h4 style="color:var(--text-muted);">کاربران فعال</h4>
-                    <p style="font-size:2rem; font-weight:800; color:var(--accent-color);">12</p>
+            <div class="admin-grid">
+                <!-- فرم افزودن سایت جدید -->
+                <div class="admin-panel-card">
+                    <h3><i class="fas fa-plus-circle" style="color: var(--accent-color);"></i> افزودن وب‌سایت جدید</h3>
+                    <form onsubmit="addNewProject(event)">
+                        <div class="input-group">
+                            <input type="text" id="projTitle" placeholder="عنوان وب‌سایت / پروژه" required>
+                            <i class="fas fa-heading"></i>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="url" id="projUrl" placeholder="آدرس سایت (URL مثل: https://example.com)" required>
+                            <i class="fas fa-link"></i>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="url" id="projImg" placeholder="آدرس لینک عکس (Image URL)" required>
+                            <i class="fas fa-image"></i>
+                        </div>
+
+                        <div class="input-group">
+                            <textarea id="projDesc" placeholder="توضیحات کوتاه درباره سایت..." rows="3" required></textarea>
+                            <i class="fas fa-align-right" style="top: 25px;"></i>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-save"></i> انتشار و افزودن به سایت
+                        </button>
+                    </form>
                 </div>
-                <div class="stat-card">
-                    <h4 style="color:var(--text-muted);">وضعیت سرور</h4>
-                    <p style="font-size:1.2rem; font-weight:800; color:var(--success-color); margin-top:10px;"><i class="fas fa-circle"></i> آنلاین</p>
+
+                <!-- جدول لیست و حذف سایت‌ها -->
+                <div class="admin-panel-card">
+                    <h3><i class="fas fa-list-check" style="color: var(--accent-color);"></i> مدیریت پروژه‌های منتشرشده</h3>
+                    <div style="overflow-x: auto;">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>تصویر</th>
+                                    <th>عنوان</th>
+                                    <th>آدرس</th>
+                                    <th>عملیات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminProjectsTable">
+                                <!-- با JS پر می‌شود -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -425,9 +409,9 @@
         <p>© 2026 Nexora Studio. تمامی حقوق محفوظ است.</p>
     </footer>
 
-    <!-- JS Logic -->
+    <!-- JavaScript Logic -->
     <script>
-        /* Background Particles */
+        /* 1. Background Particles Animation */
         const canvas = document.getElementById('bgCanvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -462,11 +446,12 @@
         }
         animateCanvas();
 
-        /* Authentication Logic */
+        /* 2. Authentication Logic */
         const ADMIN_PHONE = "09113526007";
         const ADMIN_PASS = "fariborz";
 
         window.addEventListener('DOMContentLoaded', () => {
+            initProjectsData();
             const role = localStorage.getItem('userRole');
             if (role === 'admin') showSection('adminView');
             else if (role === 'client') showSection('clientView');
@@ -483,7 +468,6 @@
                 return;
             }
 
-            // اگر شماره، شماره مدیر باشد
             if (phone === ADMIN_PHONE) {
                 if (pass === ADMIN_PASS) {
                     localStorage.setItem('userRole', 'admin');
@@ -492,7 +476,6 @@
                     err.innerText = "رمز عبور مدیر اشتباه است!";
                 }
             } else {
-                // تمام شماره‌های دیگر وارد بخش مشتری می‌شوند
                 localStorage.setItem('userRole', 'client');
                 localStorage.setItem('userPhone', phone);
                 showSection('clientView');
@@ -510,11 +493,122 @@
                 const phone = localStorage.getItem('userPhone') || '';
                 document.getElementById('clientPhoneTag').innerText = `مشتری (${phone})`;
             }
+
+            renderProjects();
         }
 
         function logout() {
-            localStorage.clear();
+            localStorage.removeItem('userRole');
+            localStorage.removeItem('userPhone');
             location.reload();
+        }
+
+        /* 3. CRUD Project Management System (مدیریت واقعی پروژه‌ها) */
+        const defaultProjects = [
+            {
+                id: 1,
+                title: "پلتفرم اختصاصی فروشگاه طلا و جواهرات",
+                url: "https://example.com",
+                img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=600&q=80",
+                desc: "طراحی مینیمال و فاخر با انیمیشین‌های سه بعدی جهت نمایش طلا و جواهرات."
+            },
+            {
+                id: 2,
+                title: "مارکت پلیس اختصاصی گیمینگ",
+                url: "https://example.com",
+                img: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=600&q=80",
+                desc: "سامانه خرید و فروش ریسورس پکت‌ها و آیتم‌های بازی با سرعت فوق‌العاده."
+            }
+        ];
+
+        function initProjectsData() {
+            if (!localStorage.getItem('nexora_projects')) {
+                localStorage.setItem('nexora_projects', JSON.stringify(defaultProjects));
+            }
+        }
+
+        function getProjects() {
+            return JSON.parse(localStorage.getItem('nexora_projects')) || [];
+        }
+
+        function addNewProject(e) {
+            e.preventDefault();
+            const title = document.getElementById('projTitle').value.trim();
+            const url = document.getElementById('projUrl').value.trim();
+            const img = document.getElementById('projImg').value.trim();
+            const desc = document.getElementById('projDesc').value.trim();
+
+            const projects = getProjects();
+            const newProj = {
+                id: Date.now(),
+                title,
+                url,
+                img,
+                desc
+            };
+
+            projects.push(newProj);
+            localStorage.setItem('nexora_projects', JSON.stringify(projects));
+
+            // ریست فرم و رندر مجدد
+            e.target.reset();
+            renderProjects();
+            alert("پروژه جدید با موفقیت اضافه شد و روی سایت منتشر گردید!");
+        }
+
+        function deleteProject(id) {
+            if (confirm("آیا از حذف این پروژه مطمئن هستید؟")) {
+                let projects = getProjects();
+                projects = projects.filter(p => p.id !== id);
+                localStorage.setItem('nexora_projects', JSON.stringify(projects));
+                renderProjects();
+            }
+        }
+
+        function renderProjects() {
+            const projects = getProjects();
+            
+            // 1. رندر در بخش مشتریان
+            const clientContainer = document.getElementById('clientProjectsList');
+            if (clientContainer) {
+                if (projects.length === 0) {
+                    clientContainer.innerHTML = `<p style="grid-column: 1/-1; text-align:center; color:var(--text-muted);">هیچ پروژه‌ای ثبت نشده است.</p>`;
+                } else {
+                    clientContainer.innerHTML = projects.map(p => `
+                        <div class="project-card">
+                            <img src="${p.img}" class="project-img" alt="${p.title}" onerror="this.src='https://via.placeholder.com/600x400/1e293b/fff?text=Nexora+Studio'">
+                            <div class="project-info">
+                                <h3>${p.title}</h3>
+                                <p>${p.desc}</p>
+                                <a href="${p.url}" target="_blank" class="btn btn-primary">
+                                    <i class="fas fa-external-link-alt"></i> مشاهده وب‌سایت
+                                </a>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            }
+
+            // 2. رندر در جدول پنل مدیریت
+            const adminTable = document.getElementById('adminProjectsTable');
+            if (adminTable) {
+                if (projects.length === 0) {
+                    adminTable.innerHTML = `<tr><td colspan="4" style="text-align:center; color:var(--text-muted);">پروژه‌ای برای مدیریت وجود ندارد.</td></tr>`;
+                } else {
+                    adminTable.innerHTML = projects.map(p => `
+                        <tr>
+                            <td><img src="${p.img}" class="thumb-preview" onerror="this.src='https://via.placeholder.com/100'"></td>
+                            <td style="font-weight:700;">${p.title}</td>
+                            <td><a href="${p.url}" target="_blank" style="color:#818cf8; text-decoration:none;">لینک سایت <i class="fas fa-link" style="font-size:0.75rem;"></i></a></td>
+                            <td>
+                                <button class="btn btn-danger" style="padding: 6px 12px; font-size: 0.8rem;" onclick="deleteProject(${p.id})">
+                                    <i class="fas fa-trash-alt"></i> حذف
+                                </button>
+                            </td>
+                        </tr>
+                    `).join('');
+                }
+            }
         }
     </script>
 </body>
