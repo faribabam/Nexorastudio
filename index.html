@@ -5,326 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nexora Studio | استودیو خلاقیت و توسعه دیجیتال</title>
     
-    <!-- Font Awesome -->
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         @import url('https://v1.fontapi.ir/css/Vazirmatn');
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Vazirmatn', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Vazirmatn', sans-serif; }
+        body { background-color: #0d0f17; color: #e2e8f0; line-height: 1.6; overflow-x: hidden; }
 
-        body {
-            background-color: #0d0f17;
-            color: #e2e8f0;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 8%; background: rgba(13, 15, 23, 0.85); backdrop-filter: blur(10px); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .logo { font-size: 1.5rem; font-weight: 800; color: #fff; }
+        .logo span { color: #6366f1; }
+        .nav-links { display: flex; list-style: none; gap: 30px; }
+        .nav-links a { color: #94a3b8; text-decoration: none; transition: 0.3s; }
+        .nav-links a:hover { color: #6366f1; }
+        .nav-actions { display: flex; gap: 10px; align-items: center; }
 
-        /* Navbar */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 8%;
-            background: rgba(13, 15, 23, 0.8);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
+        .btn-primary { background: linear-gradient(135deg, #6366f1, #a855f7); color: #fff; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; border: none; cursor: pointer; transition: 0.3s ease; display: inline-flex; align-items: center; gap: 8px; }
+        .btn-primary:hover { box-shadow: 0 0 20px rgba(99, 102, 241, 0.5); transform: translateY(-2px); }
+        .btn-secondary { border: 1px solid rgba(255, 255, 255, 0.15); color: #fff; padding: 10px 20px; border-radius: 8px; text-decoration: none; transition: 0.3s; cursor: pointer; background: transparent; display: inline-flex; align-items: center; gap: 8px; }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.05); }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            color: #fff;
-        }
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 120px 8% 60px; position: relative; }
+        .hero-content { max-width: 800px; z-index: 2; }
+        .badge { background: rgba(99, 102, 241, 0.1); color: #818cf8; padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; border: 1px solid rgba(99, 102, 241, 0.2); display: inline-block; margin-bottom: 20px; }
+        .hero h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 20px; line-height: 1.3; }
+        .gradient-text { background: linear-gradient(135deg, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { color: #94a3b8; font-size: 1.1rem; margin-bottom: 30px; }
+        .hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
 
-        .logo span {
-            color: #6366f1;
-        }
+        .services, .portfolio, .cta { padding: 80px 8%; }
+        .section-title { text-align: center; font-size: 2rem; margin-bottom: 50px; color: #fff; }
+        .cards-grid, .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .card, .portfolio-item { background: #141724; padding: 30px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); transition: 0.3s; }
+        .card:hover, .portfolio-item:hover { transform: translateY(-5px); border-color: rgba(99, 102, 241, 0.3); }
+        .card .icon { font-size: 2rem; color: #818cf8; margin-bottom: 20px; }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
+        .cta-box { background: linear-gradient(135deg, #141724, #1a1e30); padding: 50px 30px; border-radius: 16px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.08); max-width: 700px; margin: 0 auto; }
+        #contactForm { display: flex; flex-direction: column; gap: 15px; max-width: 400px; margin: 20px auto 0; }
+        input, textarea { padding: 12px 18px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); background: #0d0f17; color: #fff; outline: none; text-align: right; width: 100%; }
+        input:focus, textarea:focus { border-color: #6366f1; }
 
-        .nav-links a {
-            color: #94a3b8;
-            text-decoration: none;
-            transition: 0.3s;
-        }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(8px); z-index: 2000; justify-content: center; align-items: center; }
+        .modal-content { background: #141724; padding: 40px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); width: 90%; max-width: 400px; position: relative; }
+        .close-modal { position: absolute; top: 15px; left: 20px; font-size: 1.5rem; cursor: pointer; color: #94a3b8; }
 
-        .nav-links a:hover {
-            color: #6366f1;
-        }
+        #adminPanel { display: none; padding: 120px 8% 60px; min-height: 100vh; }
+        .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding-bottom: 20px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .stat-card { background: #141724; padding: 20px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); }
+        .stat-card h4 { color: #94a3b8; font-size: 0.9rem; }
+        .stat-card p { font-size: 1.8rem; font-weight: bold; color: #6366f1; margin-top: 5px; }
+        .admin-section { background: #141724; padding: 25px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); margin-bottom: 30px; }
+        table { width: 100%; border-collapse: collapse; text-align: right; }
+        th, td { padding: 12px 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        th { color: #818cf8; }
 
-        /* Buttons */
-        .btn-primary {
-            background: linear-gradient(135deg, #6366f1, #a855f7);
-            color: #fff;
-            padding: 10px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
+        footer { text-align: center; padding: 30px; color: #64748b; font-size: 0.85rem; border-top: 1px solid rgba(255, 255, 255, 0.05); }
 
-        .btn-primary:hover {
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #fff;
-            padding: 10px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 120px 8% 60px;
-            position: relative;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            z-index: 2;
-        }
-
-        .badge {
-            background: rgba(99, 102, 241, 0.1);
-            color: #818cf8;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            line-height: 1.3;
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, #818cf8, #c084fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            color: #94a3b8;
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .hero-glow {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, transparent 70%);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        /* Services */
-        .services, .portfolio, .cta {
-            padding: 80px 8%;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 50px;
-            color: #fff;
-        }
-
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background: #141724;
-            padding: 35px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(99, 102, 241, 0.3);
-        }
-
-        .card .icon {
-            font-size: 2rem;
-            color: #818cf8;
-            margin-bottom: 20px;
-        }
-
-        .card h3 {
-            margin-bottom: 12px;
-            color: #fff;
-        }
-
-        .card p {
-            color: #94a3b8;
-            font-size: 0.95rem;
-        }
-
-        /* Portfolio */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .portfolio-item {
-            height: 220px;
-            background: #1e2235;
-            border-radius: 12px;
-            padding: 25px;
-            display: flex;
-            align-items: flex-end;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: 0.3s;
-        }
-
-        .portfolio-item:hover {
-            border-color: #6366f1;
-        }
-
-        .portfolio-info span {
-            font-size: 0.8rem;
-            color: #818cf8;
-        }
-
-        .portfolio-info h3 {
-            color: #fff;
-            margin-top: 5px;
-        }
-
-        /* CTA */
-        .cta-box {
-            background: linear-gradient(135deg, #141724, #1a1e30);
-            padding: 50px 30px;
-            border-radius: 16px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .cta-box h2 {
-            color: #fff;
-            margin-bottom: 15px;
-        }
-
-        .cta-box p {
-            color: #94a3b8;
-            margin-bottom: 30px;
-        }
-
-        #contactForm {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        #contactForm input {
-            padding: 12px 18px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: #0d0f17;
-            color: #fff;
-            outline: none;
-            text-align: right;
-        }
-
-        #contactForm input:focus {
-            border-color: #6366f1;
-        }
-
-        .status-msg {
-            margin-top: 15px;
-            color: #4ade80;
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Mobile Fixes */
         @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 15px;
-                padding: 15px 5%;
-            }
-            .nav-links {
-                gap: 15px;
-                font-size: 0.9rem;
-            }
-            .hero h1 {
-                font-size: 2.1rem;
-            }
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: #64748b;
-            font-size: 0.85rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            .navbar { flex-direction: column; gap: 15px; padding: 15px 5%; }
+            .nav-links { gap: 15px; font-size: 0.9rem; }
+            .nav-actions { flex-wrap: wrap; justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
+    <!-- Header Navigation -->
     <header class="navbar">
         <div class="logo">NEXORA<span>.STUDIO</span></div>
         <nav>
@@ -334,111 +83,204 @@
                 <li><a href="#portfolio">نمونه‌کارها</a></li>
             </ul>
         </nav>
-        <a href="#contact" class="btn-primary">شروع پروژه</a>
+        <div class="nav-actions">
+            <a href="tel:09113526007" class="btn-secondary"><i class="fas fa-phone"></i> ۰۹۱۱۳۵۲۶۰۰۷</a>
+            <button class="btn-secondary" onclick="openLoginModal()"><i class="fas fa-lock"></i> ورود مدیر</button>
+            <a href="#contact" class="btn-primary">شروع پروژه</a>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <span class="badge">آینده دیجیتال خود را بسازید</span>
-            <h1>خلاقیت بی‌مرز در <span class="gradient-text">Nexora Studio</span></h1>
-            <p>ما ایده‌های برتر شما را به وب‌سایت‌ها، اپلیکیشن‌ها و برندهای دیجیتال فوق‌العاده با عملکرد بالا تبدیل می‌کنیم.</p>
-            <div class="hero-buttons">
-                <a href="#portfolio" class="btn-primary">مشاهده نمونه‌کارها <i class="fas fa-arrow-left"></i></a>
-                <a href="#services" class="btn-secondary">خدمات ما</a>
-            </div>
-        </div>
-        <div class="hero-glow"></div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <h2 class="section-title">خدمات اختصاصی ما</h2>
-        <div class="cards-grid">
-            <div class="card">
-                <div class="icon"><i class="fas fa-code"></i></div>
-                <h3>توسعه وب مدرن</h3>
-                <p>طراحی و کدنویسی سایت‌های اختصاصی، سریع و بهینه‌سازی‌شده برای گوگل با آخرین تکنولوژی‌ها.</p>
-            </div>
-            <div class="card">
-                <div class="icon"><i class="fas fa-paint-brush"></i></div>
-                <h3>طراحی UI/UX</h3>
-                <p>خلق رابط‌های کاربرپسند، جذاب و مینیمال برای افزایش جذب کاربر و تجربه کاربری بی‌نظیر.</p>
-            </div>
-            <div class="card">
-                <div class="icon"><i class="fas fa-rocket"></i></div>
-                <h3>هویت بصری و برندینگ</h3>
-                <p>ساخت هویت بصری منحصربه‌فرد، لوگو، و استراتژی برند برای متمایز شدن در بازار رقابتی.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio">
-        <h2 class="section-title">آخرین پروژه‌ها</h2>
-        <div class="portfolio-grid">
-            <div class="portfolio-item">
-                <div class="portfolio-info">
-                    <span>وب‌سایت / پلتفرم</span>
-                    <h3>پروژه وب مدرن Nexora</h3>
+    <!-- Main Website Content -->
+    <div id="mainContent">
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <span class="badge">آینده دیجیتال خود را بسازید</span>
+                <h1>خلاقیت بی‌مرز در <span class="gradient-text">Nexora Studio</span></h1>
+                <p>ما ایده‌های برتر شما را به وب‌سایت‌ها، اپلیکیشن‌ها و برندهای دیجیتال فوق‌العاده تبدیل می‌کنیم.</p>
+                <div class="hero-buttons">
+                    <a href="#portfolio" class="btn-primary">مشاهده نمونه‌کارها <i class="fas fa-arrow-left"></i></a>
+                    <a href="tel:09113526007" class="btn-secondary"><i class="fas fa-phone"></i> تماس تلفنی</a>
                 </div>
             </div>
-            <div class="portfolio-item">
-                <div class="portfolio-info">
-                    <span>برندینگ & UI/UX</span>
-                    <h3>طراحی برند اختصاصی</h3>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <div class="portfolio-info">
-                    <span>مارکت‌پلیس / فروشگاهی</span>
-                    <h3>پلتفرم محصولات دیجیتال</h3>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="cta">
-        <div class="cta-box">
-            <h2>آماده‌اید پروژه خود را شروع کنید؟</h2>
-            <p>همین امروز با تیم Nexora Studio در ارتباط باشید تا ایده شما را به واقعیت تبدیل کنیم.</p>
-            <form id="contactForm" onsubmit="handleSubmit(event)">
-                <input type="text" placeholder="نام شما" required>
-                <input type="email" placeholder="ایمیل یا شماره تماس" required>
-                <button type="submit" class="btn-primary">ارسال درخواست</button>
+        <!-- Services -->
+        <section id="services" class="services">
+            <h2 class="section-title">خدمات اختصاصی ما</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="icon"><i class="fas fa-code"></i></div>
+                    <h3>توسعه وب مدرن</h3>
+                    <p>طراحی و کدنویسی سایت‌های اختصاصی، سریع و بهینه‌سازی‌شده برای گوگل.</p>
+                </div>
+                <div class="card">
+                    <div class="icon"><i class="fas fa-paint-brush"></i></div>
+                    <h3>طراحی UI/UX</h3>
+                    <p>خلق رابط‌های کاربرپسند، جذاب و مینیمال برای تجربه کاربری بی‌نظیر.</p>
+                </div>
+                <div class="card">
+                    <div class="icon"><i class="fas fa-rocket"></i></div>
+                    <h3>هویت بصری و برندینگ</h3>
+                    <p>ساخت هویت بصری منحصربه‌فرد، لوگو، و استراتژی برند.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio -->
+        <section id="portfolio" class="portfolio">
+            <h2 class="section-title">آخرین پروژه‌ها</h2>
+            <div class="portfolio-grid" id="portfolioList">
+                <div class="portfolio-item">
+                    <span style="color:#818cf8; font-size:0.8rem;">وب‌سایت / پلتفرم</span>
+                    <h3 style="color:#fff; margin-top:5px;">پروژه وب مدرن Nexora</h3>
+                </div>
+                <div class="portfolio-item">
+                    <span style="color:#818cf8; font-size:0.8rem;">برندینگ & UI/UX</span>
+                    <h3 style="color:#fff; margin-top:5px;">طراحی برند اختصاصی</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form -->
+        <section id="contact" class="cta">
+            <div class="cta-box">
+                <h2>آماده‌اید پروژه خود را شروع کنید؟</h2>
+                <p>پیام بگذارید یا مستقیماً تماس بگیرید.</p>
+                
+                <div style="margin-bottom: 20px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                    <a href="tel:09113526007" class="btn-secondary"><i class="fas fa-phone"></i> ۰۹۱۱۳۵۲۶۰۰۷</a>
+                    <a href="https://wa.me/989113526007" target="_blank" class="btn-primary" style="background: #25D366; border: none;">
+                        <i class="fab fa-whatsapp"></i> پیام در واتساپ
+                    </a>
+                </div>
+
+                <form id="contactForm" onsubmit="handleContactSubmit(event)">
+                    <input type="text" id="clientName" placeholder="نام شما" required>
+                    <input type="text" id="clientContact" placeholder="ایمیل یا شماره تماس" required>
+                    <textarea id="clientMsg" placeholder="توضیحات پروژه" rows="3" required></textarea>
+                    <button type="submit" class="btn-primary">ارسال درخواست</button>
+                </form>
+                <div id="formStatus" style="margin-top:15px; color:#4ade80;"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeLoginModal()">&times;</span>
+            <h2 style="text-align: center; margin-bottom: 20px; color: #fff;">ورود به پنل مدیریت</h2>
+            <form onsubmit="handleLogin(event)">
+                <div style="margin-bottom: 15px;">
+                    <label style="font-size:0.85rem; color:#94a3b8;">نام کاربری:</label>
+                    <input type="text" id="username" value="admin" required style="margin-top:5px;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label style="font-size:0.85rem; color:#94a3b8;">رمز عبور:</label>
+                    <input type="password" id="password" placeholder="admin123" required style="margin-top:5px;">
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">ورود</button>
+                <p id="loginError" style="color:#ef4444; font-size:0.85rem; margin-top:10px; text-align:center;"></p>
             </form>
-            <div id="formStatus" class="status-msg"></div>
         </div>
-    </section>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="adminPanel">
+        <div class="admin-header">
+            <h2>پنل مدیریت <span class="gradient-text">Nexora Studio</span></h2>
+            <button class="btn-secondary" onclick="logout()"><i class="fas fa-sign-out-alt"></i> خروج از حساب</button>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h4>کل درخواست‌ها</h4>
+                <p id="totalRequests">0</p>
+            </div>
+            <div class="stat-card">
+                <h4>پروژه‌های ثبت‌شده</h4>
+                <p id="totalProjects">2</p>
+            </div>
+        </div>
+
+        <div class="admin-section">
+            <h3>پیام‌های دریافتی از مشتریان</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>نام مشتری</th>
+                        <th>تماس</th>
+                        <th>توضیحات</th>
+                    </tr>
+                </thead>
+                <tbody id="messagesTable">
+                    <tr>
+                        <td colspan="3" style="text-align:center; color:#64748b;">هنوز پیامی دریافت نشده است.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
+        <p style="margin-bottom: 10px; font-size: 0.95rem; color: #e2e8f0;">
+            <i class="fas fa-phone-alt" style="color: #6366f1;"></i> شماره تماس: 
+            <a href="tel:09113526007" style="color: #818cf8; text-decoration: none;">۰۹۱۱۳۵۲۶۰۰۷</a>
+        </p>
         <p>© 2026 Nexora Studio. تمامی حقوق محفوظ است.</p>
     </footer>
 
     <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+        function openLoginModal() { document.getElementById('loginModal').style.display = 'flex'; }
+        function closeLoginModal() { document.getElementById('loginModal').style.display = 'none'; }
 
-        function handleSubmit(e) {
+        function handleLogin(e) {
             e.preventDefault();
-            const statusMsg = document.getElementById('formStatus');
-            statusMsg.innerText = "درخواست شما با موفقیت ثبت شد! به زودی با شما تماس می‌گیریم.";
+            const pass = document.getElementById('password').value;
+            const error = document.getElementById('loginError');
+
+            if (pass === "admin123") {
+                closeLoginModal();
+                document.getElementById('mainContent').style.display = 'none';
+                document.getElementById('adminPanel').style.display = 'block';
+                error.innerText = "";
+            } else {
+                error.innerText = "رمز عبور اشتباه است! (رمز نمونه: admin123)";
+            }
+        }
+
+        function logout() {
+            document.getElementById('adminPanel').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+        }
+
+        let messagesCount = 0;
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('clientName').value;
+            const contact = document.getElementById('clientContact').value;
+            const msg = document.getElementById('clientMsg').value;
+
+            const table = document.getElementById('messagesTable');
+            
+            if (messagesCount === 0) { table.innerHTML = ""; }
+
+            const row = `<tr>
+                <td>${name}</td>
+                <td>${contact}</td>
+                <td>${msg}</td>
+            </tr>`;
+            
+            table.innerHTML += row;
+            messagesCount++;
+            document.getElementById('totalRequests').innerText = messagesCount;
+
+            document.getElementById('formStatus').innerText = "درخواست شما با موفقیت ثبت شد!";
             document.getElementById('contactForm').reset();
 
-            setTimeout(() => {
-                statusMsg.innerText = "";
-            }, 5000);
+            setTimeout(() => { document.getElementById('formStatus').innerText = ""; }, 4000);
         }
     </script>
 </body>
