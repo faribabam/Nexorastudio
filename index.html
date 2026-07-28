@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexora Studio | مدیریت کامل پلتفرم</title>
+    <title>Nexora Studio | سیستم مدیریت پیشرفته</title>
     
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -41,7 +41,7 @@
             min-height: 100vh;
         }
 
-        /* Background Particle Canvas */
+        /* Canvas Particle Background */
         #bgCanvas {
             position: fixed;
             top: 0;
@@ -80,7 +80,7 @@
             background: rgba(20, 23, 36, 0.85);
             border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 24px;
-            padding: 45px 35px;
+            padding: 40px 30px;
             width: 90%;
             max-width: 440px;
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(99, 102, 241, 0.25);
@@ -88,18 +88,18 @@
         }
 
         .login-card .brand-icon {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             background: var(--primary-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             display: inline-block;
         }
 
-        .login-card h2 { font-size: 1.7rem; color: #fff; margin-bottom: 6px; font-weight: 800; }
-        .login-card p { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 25px; }
+        .login-card h2 { font-size: 1.6rem; color: #fff; margin-bottom: 6px; font-weight: 800; }
+        .login-card p { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 22px; }
 
-        .input-group { position: relative; margin-bottom: 18px; text-align: right; }
+        .input-group { position: relative; margin-bottom: 16px; text-align: right; }
         .input-group i { position: absolute; top: 50%; transform: translateY(-50%); right: 18px; color: var(--text-muted); }
         .input-group input, .input-group textarea {
             width: 100%;
@@ -113,6 +113,32 @@
             transition: all 0.3s ease;
         }
 
+        /* Styling File Input */
+        .file-input-wrapper {
+            position: relative;
+            background: rgba(8, 9, 17, 0.7);
+            border: 1px dashed var(--accent-color);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .file-input-wrapper:hover {
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .file-input-wrapper input[type="file"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
         .input-group input:focus, .input-group textarea:focus {
             border-color: var(--accent-color);
             box-shadow: 0 0 15px var(--accent-glow);
@@ -122,17 +148,17 @@
 
         /* Buttons */
         .btn {
-            padding: 12px 24px;
+            padding: 10px 20px;
             border-radius: 12px;
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             text-decoration: none;
             cursor: pointer;
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             border: none;
             outline: none;
         }
@@ -144,6 +170,8 @@
         }
 
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(168, 85, 247, 0.5); }
+        .btn-admin-panel { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); }
+        .btn-admin-panel:hover { background: #a855f7; color: #fff; }
         .btn-danger { background: rgba(244, 63, 94, 0.2); color: var(--error-color); border: 1px solid rgba(244, 63, 94, 0.4); }
         .btn-danger:hover { background: var(--error-color); color: #fff; }
 
@@ -162,13 +190,12 @@
             border-bottom: 1px solid var(--border-glow);
         }
 
-        .logo { font-size: 1.5rem; font-weight: 900; color: #fff; }
+        .logo { font-size: 1.5rem; font-weight: 900; color: #fff; cursor: pointer; }
         .logo span { background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
+        .nav-actions { display: flex; align-items: center; gap: 12px; }
+
         .user-tag {
-            display: flex;
-            align-items: center;
-            gap: 12px;
             background: rgba(255, 255, 255, 0.05);
             padding: 6px 16px;
             border-radius: 30px;
@@ -187,12 +214,12 @@
         }
 
         /* App Sections */
-        .app-section { display: none; opacity: 0; transition: opacity 0.6s ease; }
+        .app-section { display: none; opacity: 0; transition: opacity 0.5s ease; }
         .app-section.active { display: block; opacity: 1; }
 
         /* Client Section & Cards */
         .hero { text-align: center; padding: 140px 8% 40px; }
-        .hero h1 { font-size: 3rem; font-weight: 900; margin-bottom: 15px; }
+        .hero h1 { font-size: 2.8rem; font-weight: 900; margin-bottom: 15px; }
         .gradient-text { background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
         .projects-grid {
@@ -221,7 +248,7 @@
 
         .project-img {
             width: 100%;
-            height: 180px;
+            height: 190px;
             object-fit: cover;
             border-bottom: 1px solid var(--border-glow);
             background: #1e293b;
@@ -231,7 +258,7 @@
         .project-info h3 { font-size: 1.2rem; color: #fff; margin-bottom: 8px; }
         .project-info p { color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px; }
 
-        /* Admin Dashboard Layout */
+        /* Admin Dashboard Page Layout */
         .admin-dashboard { padding: 120px 8% 80px; }
         
         .admin-grid {
@@ -249,7 +276,7 @@
         }
 
         .admin-panel-card h3 {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 20px;
             color: #fff;
             display: flex;
@@ -262,16 +289,15 @@
             width: 100%;
             border-collapse: collapse;
             text-align: right;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
         }
 
         .admin-table th, .admin-table td {
-            padding: 12px 15px;
+            padding: 12px 10px;
             border-bottom: 1px solid var(--border-glow);
         }
 
         .admin-table th { color: #818cf8; }
-
         .thumb-preview { width: 45px; height: 45px; border-radius: 8px; object-fit: cover; }
 
         footer { text-align: center; padding: 30px; color: var(--text-muted); border-top: 1px solid var(--border-glow); }
@@ -290,71 +316,85 @@
     <!-- ========================================================= -->
     <div id="entryGatekeeper">
         <div class="login-card">
-            <div class="brand-icon"><i class="fas fa-user-lock"></i></div>
-            <h2>ورود به سیستم</h2>
-            <p>شماره تلفن خود را برای ورود وارد کنید</p>
+            <div class="brand-icon"><i class="fas fa-shield-halved"></i></div>
+            <h2>ورود به پلتفرم</h2>
+            <p>مشخصات خود را برای ورود وارد نمایید</p>
 
             <form onsubmit="handleAuth(event)">
+                <!-- فیلد جدید: نام و نام خانوادگی -->
                 <div class="input-group">
-                    <input type="text" id="phoneInput" placeholder="شماره همراه (مثال: 09113526007)" required>
+                    <input type="text" id="nameInput" placeholder="نام و نام خانوادگی..." required>
+                    <i class="fas fa-user"></i>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" id="phoneInput" placeholder="شماره همراه..." required>
                     <i class="fas fa-phone"></i>
                 </div>
                 
                 <div class="input-group">
-                    <input type="password" id="passInput" placeholder="رمز عبور مدیر">
+                    <input type="password" id="passInput" placeholder="رمز عبور (ویژه مدیر)">
                     <i class="fas fa-key"></i>
                 </div>
 
                 <div id="loginError" class="error-message"></div>
 
-                <button type="submit" class="btn btn-primary" style="width: 100%;">
-                    <i class="fas fa-sign-in-alt"></i> ورود به پلتفرم
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px;">
+                    <i class="fas fa-sign-in-alt"></i> ورود به سیستم
                 </button>
             </form>
         </div>
     </div>
 
     <!-- ========================================================= -->
-    <!-- 2. CLIENT VIEW (نمایش پروژه‌ها برای مشتریان)             -->
+    <!-- NAVBAR (مشترک با کلید ویژه ادمین)                           -->
     <!-- ========================================================= -->
-    <div id="clientView" class="app-section">
-        <header class="navbar">
-            <div class="logo">NEXORA<span>.STUDIO</span></div>
-            <div class="user-tag">
-                <span id="clientPhoneTag" style="color: var(--success-color);"><i class="fas fa-user"></i> مشتری</span>
-                <button class="btn-logout" onclick="logout()"><i class="fas fa-power-off"></i> خروج</button>
-            </div>
-        </header>
+    <header class="navbar">
+        <div class="logo" onclick="showSection('mainSiteView')">NEXORA<span>.STUDIO</span></div>
+        <div class="nav-actions">
+            <!-- دکمه پنل مدیریت که فقط برای ادمین ظاهر می‌شود -->
+            <button id="adminPanelBtn" class="btn btn-admin-panel" style="display: none;" onclick="showSection('adminPanelView')">
+                <i class="fas fa-sliders"></i> پنل مدیریت
+            </button>
 
+            <div class="user-tag">
+                <span id="userTagDisplay"><i class="fas fa-user"></i> کاربر</span>
+            </div>
+            <button class="btn-logout" onclick="logout()"><i class="fas fa-power-off"></i> خروج</button>
+        </div>
+    </header>
+
+    <!-- ========================================================= -->
+    <!-- 2. MAIN SITE VIEW (دید اصلی سایت برای همه + ادمین)       -->
+    <!-- ========================================================= -->
+    <div id="mainSiteView" class="app-section">
         <section class="hero">
             <h1>پروژه‌ها و وب‌سایت‌های <span class="gradient-text">Nexora</span></h1>
-            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">لیست پروژه‌های فعال و طراحی‌شده توسط استودیو را مشاهده کنید.</p>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">جدیدترین پروژه‌های طراحی و توسعه داده شده توسط استودیو.</p>
         </section>
 
-        <!-- لیست پروژه‌های فعال به صورت زنده از JS پر می‌شود -->
         <div class="projects-grid" id="clientProjectsList"></div>
     </div>
 
     <!-- ========================================================= -->
-    <!-- 3. ADMIN VIEW (مدیریت کامل و دکمه‌های واقعی)            -->
+    <!-- 3. ADMIN PANEL PAGE (صفحه‌ی مجزای پنل مدیریت)           -->
     <!-- ========================================================= -->
-    <div id="adminView" class="app-section">
-        <header class="navbar">
-            <div class="logo">NEXORA<span>.ADMIN</span></div>
-            <div class="user-tag">
-                <span style="color: #818cf8;"><i class="fas fa-user-shield"></i> مدیریت: فریبرز</span>
-                <button class="btn-logout" onclick="logout()"><i class="fas fa-power-off"></i> خروج</button>
-            </div>
-        </header>
-
+    <div id="adminPanelView" class="app-section">
         <div class="admin-dashboard">
-            <h2>پنل کنترل و مدیریت <span class="gradient-text">کامل پروژه‌ها</span></h2>
-            <p style="color: var(--text-muted);">از این بخش می‌توانید سایت‌های جدید اضافه کرده یا سایت‌های موجود را حذف کنید.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+                <div>
+                    <h2>پنل اختصاصی <span class="gradient-text">مدیریت وب‌سایت‌ها</span></h2>
+                    <p style="color: var(--text-muted);">افزودن مستقیم فایل عکس، لینک و عنوان جدید به پلتفرم</p>
+                </div>
+                <button class="btn btn-primary" onclick="showSection('mainSiteView')">
+                    <i class="fas fa-eye"></i> مشاهده ظاهر اصلی سایت
+                </button>
+            </div>
 
             <div class="admin-grid">
-                <!-- فرم افزودن سایت جدید -->
+                <!-- فرم افزودن با قابلیت آپلود فایل عکس -->
                 <div class="admin-panel-card">
-                    <h3><i class="fas fa-plus-circle" style="color: var(--accent-color);"></i> افزودن وب‌سایت جدید</h3>
+                    <h3><i class="fas fa-plus-circle" style="color: var(--accent-color);"></i> افزودن پروژه جدید</h3>
                     <form onsubmit="addNewProject(event)">
                         <div class="input-group">
                             <input type="text" id="projTitle" placeholder="عنوان وب‌سایت / پروژه" required>
@@ -362,36 +402,40 @@
                         </div>
 
                         <div class="input-group">
-                            <input type="url" id="projUrl" placeholder="آدرس سایت (URL مثل: https://example.com)" required>
+                            <input type="url" id="projUrl" placeholder="آدرس سایت (URL مثل: https://site.com)" required>
                             <i class="fas fa-link"></i>
                         </div>
 
+                        <!-- آپلود به صورت فایل عکس -->
                         <div class="input-group">
-                            <input type="url" id="projImg" placeholder="آدرس لینک عکس (Image URL)" required>
-                            <i class="fas fa-image"></i>
+                            <div class="file-input-wrapper">
+                                <i class="fas fa-cloud-upload-alt" style="font-size: 1.5rem; color: var(--accent-color); margin-bottom: 5px;"></i>
+                                <p id="fileNameDisplay" style="font-size: 0.85rem; color: var(--text-muted);">برای انتخاب فایل عکس پروژه کلیک کنید</p>
+                                <input type="file" id="projImgFile" accept="image/*" onchange="updateFileName(this)">
+                            </div>
                         </div>
 
                         <div class="input-group">
-                            <textarea id="projDesc" placeholder="توضیحات کوتاه درباره سایت..." rows="3" required></textarea>
+                            <textarea id="projDesc" placeholder="توضیحات درباره پروژه..." rows="3" required></textarea>
                             <i class="fas fa-align-right" style="top: 25px;"></i>
                         </div>
 
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">
-                            <i class="fas fa-save"></i> انتشار و افزودن به سایت
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px;">
+                            <i class="fas fa-save"></i> انتشار در وب‌سایت
                         </button>
                     </form>
                 </div>
 
-                <!-- جدول لیست و حذف سایت‌ها -->
+                <!-- جدول لیست پروژه‌ها جهت حذف -->
                 <div class="admin-panel-card">
-                    <h3><i class="fas fa-list-check" style="color: var(--accent-color);"></i> مدیریت پروژه‌های منتشرشده</h3>
+                    <h3><i class="fas fa-list-check" style="color: var(--accent-color);"></i> لیست پروژه‌ها و مدیریت</h3>
                     <div style="overflow-x: auto;">
                         <table class="admin-table">
                             <thead>
                                 <tr>
                                     <th>تصویر</th>
                                     <th>عنوان</th>
-                                    <th>آدرس</th>
+                                    <th>لینک</th>
                                     <th>عملیات</th>
                                 </tr>
                             </thead>
@@ -411,7 +455,7 @@
 
     <!-- JavaScript Logic -->
     <script>
-        /* 1. Background Particles Animation */
+        /* 1. Canvas Particles Animation */
         const canvas = document.getElementById('bgCanvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -453,71 +497,106 @@
         window.addEventListener('DOMContentLoaded', () => {
             initProjectsData();
             const role = localStorage.getItem('userRole');
-            if (role === 'admin') showSection('adminView');
-            else if (role === 'client') showSection('clientView');
+            if (role) {
+                document.getElementById('entryGatekeeper').classList.add('hidden');
+                setupUserHeader();
+                showSection('mainSiteView');
+            }
         });
 
         function handleAuth(e) {
             e.preventDefault();
+            const name = document.getElementById('nameInput').value.trim();
             const phone = document.getElementById('phoneInput').value.trim();
             const pass = document.getElementById('passInput').value.trim();
             const err = document.getElementById('loginError');
 
-            if (!phone) {
-                err.innerText = "لطفاً شماره تلفن را وارد کنید!";
+            if (!name || !phone) {
+                err.innerText = "لطفاً نام و شماره تلفن را وارد کنید!";
                 return;
             }
 
             if (phone === ADMIN_PHONE) {
                 if (pass === ADMIN_PASS) {
                     localStorage.setItem('userRole', 'admin');
-                    showSection('adminView');
+                    localStorage.setItem('userName', name || 'فریبرز');
+                    document.getElementById('entryGatekeeper').classList.add('hidden');
+                    setupUserHeader();
+                    showSection('mainSiteView'); // مدیر هم ابتدا کل سایت را ببیند
                 } else {
                     err.innerText = "رمز عبور مدیر اشتباه است!";
                 }
             } else {
                 localStorage.setItem('userRole', 'client');
+                localStorage.setItem('userName', name);
                 localStorage.setItem('userPhone', phone);
-                showSection('clientView');
+                document.getElementById('entryGatekeeper').classList.add('hidden');
+                setupUserHeader();
+                showSection('mainSiteView');
+            }
+        }
+
+        function setupUserHeader() {
+            const role = localStorage.getItem('userRole');
+            const name = localStorage.getItem('userName') || '';
+            const adminBtn = document.getElementById('adminPanelBtn');
+            const userTagDisplay = document.getElementById('userTagDisplay');
+
+            if (role === 'admin') {
+                adminBtn.style.display = 'inline-flex';
+                userTagDisplay.innerHTML = `<i class="fas fa-user-shield" style="color:#818cf8;"></i> مدیر (${name})`;
+            } else {
+                adminBtn.style.display = 'none';
+                userTagDisplay.innerHTML = `<i class="fas fa-user" style="color:var(--success-color);"></i> ${name}`;
             }
         }
 
         function showSection(sectionId) {
-            document.getElementById('entryGatekeeper').classList.add('hidden');
             document.querySelectorAll('.app-section').forEach(s => s.classList.remove('active'));
-            
             const target = document.getElementById(sectionId);
-            target.classList.add('active');
-
-            if (sectionId === 'clientView') {
-                const phone = localStorage.getItem('userPhone') || '';
-                document.getElementById('clientPhoneTag').innerText = `مشتری (${phone})`;
-            }
+            if(target) target.classList.add('active');
 
             renderProjects();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function logout() {
-            localStorage.removeItem('userRole');
-            localStorage.removeItem('userPhone');
+            localStorage.clear();
             location.reload();
         }
 
-        /* 3. CRUD Project Management System (مدیریت واقعی پروژه‌ها) */
+        /* 3. Project Management Logic (با پشتیبانی از فایل عکس) */
+        let uploadedBase64Image = "";
+
+        function updateFileName(input) {
+            const display = document.getElementById('fileNameDisplay');
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+                display.innerText = "عکس انتخاب شد: " + file.name;
+
+                // تبدیل فایل عکس به Base64
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    uploadedBase64Image = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
         const defaultProjects = [
             {
                 id: 1,
-                title: "پلتفرم اختصاصی فروشگاه طلا و جواهرات",
+                title: "فروشگاه اختصاصی طلا و جواهرات",
                 url: "https://example.com",
                 img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=600&q=80",
-                desc: "طراحی مینیمال و فاخر با انیمیشین‌های سه بعدی جهت نمایش طلا و جواهرات."
+                desc: "پلتفرم مینیمال و لوکس اختصاصی طلا و جواهرات."
             },
             {
                 id: 2,
-                title: "مارکت پلیس اختصاصی گیمینگ",
+                title: "مارکت پلیس گیمینگ",
                 url: "https://example.com",
                 img: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=600&q=80",
-                desc: "سامانه خرید و فروش ریسورس پکت‌ها و آیتم‌های بازی با سرعت فوق‌العاده."
+                desc: "سامانه خرید و فروش ریسورس پکت‌ها و آیتم‌های گیمینگ."
             }
         ];
 
@@ -535,29 +614,33 @@
             e.preventDefault();
             const title = document.getElementById('projTitle').value.trim();
             const url = document.getElementById('projUrl').value.trim();
-            const img = document.getElementById('projImg').value.trim();
             const desc = document.getElementById('projDesc').value.trim();
+
+            const imgToSave = uploadedBase64Image || "https://via.placeholder.com/600x400/1e293b/fff?text=Nexora+Studio";
 
             const projects = getProjects();
             const newProj = {
                 id: Date.now(),
                 title,
                 url,
-                img,
+                img: imgToSave,
                 desc
             };
 
             projects.push(newProj);
             localStorage.setItem('nexora_projects', JSON.stringify(projects));
 
-            // ریست فرم و رندر مجدد
+            // ریست فرم
             e.target.reset();
+            uploadedBase64Image = "";
+            document.getElementById('fileNameDisplay').innerText = "برای انتخاب فایل عکس پروژه کلیک کنید";
+
             renderProjects();
-            alert("پروژه جدید با موفقیت اضافه شد و روی سایت منتشر گردید!");
+            alert("پروژه جدید با موفقیت منتشر شد!");
         }
 
         function deleteProject(id) {
-            if (confirm("آیا از حذف این پروژه مطمئن هستید؟")) {
+            if (confirm("آیا از حذف این پروژه اطمینان دارید؟")) {
                 let projects = getProjects();
                 projects = projects.filter(p => p.id !== id);
                 localStorage.setItem('nexora_projects', JSON.stringify(projects));
@@ -568,7 +651,7 @@
         function renderProjects() {
             const projects = getProjects();
             
-            // 1. رندر در بخش مشتریان
+            // 1. رندر در صفحه اصلی سایت
             const clientContainer = document.getElementById('clientProjectsList');
             if (clientContainer) {
                 if (projects.length === 0) {
@@ -593,15 +676,15 @@
             const adminTable = document.getElementById('adminProjectsTable');
             if (adminTable) {
                 if (projects.length === 0) {
-                    adminTable.innerHTML = `<tr><td colspan="4" style="text-align:center; color:var(--text-muted);">پروژه‌ای برای مدیریت وجود ندارد.</td></tr>`;
+                    adminTable.innerHTML = `<tr><td colspan="4" style="text-align:center; color:var(--text-muted);">پروژه‌ای وجود ندارد.</td></tr>`;
                 } else {
                     adminTable.innerHTML = projects.map(p => `
                         <tr>
                             <td><img src="${p.img}" class="thumb-preview" onerror="this.src='https://via.placeholder.com/100'"></td>
                             <td style="font-weight:700;">${p.title}</td>
-                            <td><a href="${p.url}" target="_blank" style="color:#818cf8; text-decoration:none;">لینک سایت <i class="fas fa-link" style="font-size:0.75rem;"></i></a></td>
+                            <td><a href="${p.url}" target="_blank" style="color:#818cf8; text-decoration:none;">لینک <i class="fas fa-link" style="font-size:0.75rem;"></i></a></td>
                             <td>
-                                <button class="btn btn-danger" style="padding: 6px 12px; font-size: 0.8rem;" onclick="deleteProject(${p.id})">
+                                <button class="btn btn-danger" style="padding: 5px 10px; font-size: 0.8rem;" onclick="deleteProject(${p.id})">
                                     <i class="fas fa-trash-alt"></i> حذف
                                 </button>
                             </td>
