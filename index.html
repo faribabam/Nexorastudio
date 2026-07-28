@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexora Studio | استودیو خلاقیت و توسعه دیجیتال</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="navbar">
+        <div class="logo">NEXORA<span>.STUDIO</span></div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home">خانه</a></li>
+                <li><a href="#services">خدمات</a></li>
+                <li><a href="#portfolio">نمونه‌کارها</a></li>
+                <li><a href="#about">درباره ما</a></li>
+            </ul>
+        </nav>
+        <a href="#contact" class="btn-primary">شروع پروژه</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <span class="badge">آینده دیجیتال خود را بسازید</span>
+            <h1>خلاقیت بی‌مرز در <span class="gradient-text">Nexora Studio</span></h1>
+            <p>ما ایده‌های برتر شما را به وب‌سایت‌ها، اپلیکیشن‌ها و برندهای دیجیتال فوق‌العاده با عملکرد بالا تبدیل می‌کنیم.</p>
+            <div class="hero-buttons">
+                <a href="#portfolio" class="btn-primary">مشاهده نمونه‌کارها <i class="fas fa-arrow-left"></i></a>
+                <a href="#services" class="btn-secondary">خدمات ما</a>
+            </div>
+        </div>
+        <div class="hero-glow"></div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <h2 class="section-title">خدمات اختصاصی ما</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="icon"><i class="fas fa-code"></i></div>
+                <h3>توسعه وب مدرن</h3>
+                <p>طراحی و کدنویسی سایت‌های اختصاصی، سریع و بهینه‌سازی‌شده برای گوگل با آخرین تکنولوژی‌ها.</p>
+            </div>
+            <div class="card">
+                <div class="icon"><i class="fas fa-paint-brush"></i></div>
+                <h3>طراحی UI/UX</h3>
+                <p>خلق رابط‌های کاربرپسند، جذاب و مینیمال برای افزایش جذب کاربر و تجربه کاربری بی‌نظیر.</p>
+            </div>
+            <div class="card">
+                <div class="icon"><i class="fas fa-rocket"></i></div>
+                <h3>هویت بصری و برندینگ</h3>
+                <p>ساخت هویت بصری منحصربه‌فرد، لوگو، و استراتژی برند برای متمایز شدن در بازار رقابتی.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <h2 class="section-title">آخرین پروژه‌ها</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <div class="portfolio-info">
+                    <span>وب‌سایت / پلتفرم</span>
+                    <h3>پروژه وب مدرن Nexora</h3>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-info">
+                    <span>برندینگ & UI/UX</span>
+                    <h3>طراحی برند اختصاصی</h3>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-info">
+                    <span>مارکت‌پلیس / فروشگاهی</span>
+                    <h3>پلتفرم محصولات دیجیتال</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / CTA Section -->
+    <section id="contact" class="cta">
+        <div class="cta-box">
+            <h2>آماده‌اید پروژه خود را شروع کنید؟</h2>
+            <p>همین امروز با تیم Nexora Studio در ارتباط باشید تا ایده شما را به واقعیت تبدیل کنیم.</p>
+            <form id="contactForm" onsubmit="handleSubmit(event)">
+                <input type="text" placeholder="نام شما" required>
+                <input type="email" placeholder="ایمیل یا شماره تماس" required>
+                <button type="submit" class="btn-primary">ارسال درخواست</button>
+            </form>
+            <div id="formStatus" class="status-msg"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Nexora Studio. تمامی حقوق محفوظ است.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
